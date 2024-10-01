@@ -1,5 +1,7 @@
 @extends("layouts.app")
 @section("header")
+<!-- Select2 -->
+<link href="/assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
 
 @endsection
 @section("content")
@@ -139,7 +141,8 @@ foreach ($Urgent as $key => $value) {
  <script src="/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
  <script src="/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
  <script src="/assets/js/app.min.js" type="text/javascript"></script>
-
+<!-- Select2 -->
+<script src="/assets/vendors/select2/dist/js/select2.full.min.js"></script>
  <script>
 
 $(document).on("click", '.btn-delete', function(e) {
