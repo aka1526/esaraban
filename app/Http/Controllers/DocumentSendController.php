@@ -16,6 +16,7 @@ use App\Models\SettingDoc;
 use App\Models\Section;
 
 use App\Http\Controllers\SettingDocController;
+use App\Http\Controllers\UploadFileController as UploadFile;
 
 class DocumentSendController extends Controller
 {    protected  $paginate =20;
@@ -150,6 +151,12 @@ class DocumentSendController extends Controller
             , 'updated_by'=>$updated_by
         ]);
 
+      }
+      $Upload=false;
+
+      if ($request->hasfile('file')) {
+          $UploadFile= new UploadFile();
+          $Upload=  $UploadFile->uploadFile($request);
       }
 
         return redirect('/document-send')->with('msg', $act);

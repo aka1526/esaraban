@@ -36,7 +36,7 @@
         </header>
         @extends("layouts.sidebar")
         @yield("content")
-    </div>
+
     <div class="sidenav-backdrop backdrop"></div>
     <div class="preloader-backdrop">
         <div class="page-preloader">Loading</div>
@@ -45,5 +45,23 @@
 
 
 @yield("js")
+
+<script language="javascript">
+    var popupWindow = null;
+
+    function centeredPopup(url, winName, w, h, scroll) {
+        var w = 1200;
+        var h = 900;
+        var winName = 'report';
+        var scroll = 'yes';
+
+        LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+        TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+        settings =
+            'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll +
+            ',resizable'
+        popupWindow = window.open(url, winName, settings)
+    }
+</script>
 </body>
 </html>

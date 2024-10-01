@@ -93,7 +93,7 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label >เอกสารแนบ</label>
-                                    <input type="file"  id="files" name="files" class="form-control form-control-file"   multiple >
+                                    <input type="file"  id="file" name="file[]" class="form-control form-control-file"   multiple >
                                 </div>
                             </div>
 

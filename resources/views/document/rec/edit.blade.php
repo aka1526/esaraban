@@ -12,6 +12,8 @@
     $SectionIn=\App\Models\Section::where('type','IN')->OrderBy('name')->get();
     $SectionOut=\App\Models\Section::where('type','EX')->OrderBy('name')->get();
 
+    $Uploads=\App\Models\Uploads::where('ref_uuid',$data->uuid)->OrderBy('created_at')->get();
+
 @endphp
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
@@ -96,7 +98,7 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label >เอกสารแนบ</label>
-                                    <input type="file"  id="files" name="files" class="form-control form-control-file"   multiple >
+                                    <input type="file"  id="file" name="file[]" class="form-control form-control-file"   multiple >
                                 </div>
                             </div>
 
@@ -105,8 +107,52 @@
                                 <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> บันทึก</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
+                <div class="ibox">
+                    <div class="ibox-head bg-info" >
+                        <div class="ibox-title">เอกสารแนบ</div>
+                    </div>
+                    <div class="ibody">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>File</th>
+                                        <th>File Name</th>
+                                        <th>Date Time</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach ($Uploads as $file )
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>{{ $file->file_ext }}</td>
+                                        <td>{{ $file->file_name }}</td>
+                                        <td>{{ $file->created_at }}</td>
+                                        <td>
+                                            <a href="javascript:void(0)" data-uuid="{{ $file->uuid }}"
+                                                onclick="centeredPopup('{{ "/uploads/".$file->file_name }}')"
+                                                class="btn btn-primary btn-sm btn-file-view"><i class="fa fa-eyes"></i> View</a>
+                                            <a href="javascript:void(0)" data-uuid="{{ $file->uuid }}" class="btn btn-danger btn-sm btn-file-delete"><i class="fa fa-trash"></i> Delete</a>
+                                        </td>
+                                      </tr>
+                                      @endforeach
+
+
+
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -132,5 +178,42 @@
             tags: true
         });
     }
-    </script>
+
+$(document).on("click", '.btn-file-delete', function(e) {
+    e.preventDefault();
+    var uuid=$(this).data('uuid');
+    Swal.fire({
+        title: 'ยืนยันการลบ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+        $.ajax({
+                type: 'POST',
+                url: "{{route('upload.deletefile')}}",
+                data: {uuid: uuid,"_token": "{{ csrf_token() }}"},
+                success: function (data){
+                            Swal.fire({
+                            title: "ลบข้อมูลสำเร็จ",
+                            timer: 1000,
+                            icon: "success",
+                            confirmButtonText: 'OK'
+                            }).then((willDelete) => {
+                                deleteRow(rowid);
+
+                            });
+
+
+                            location.reload();
+                },
+                error: function(e) {
+                    console.log(e);
+                }});
+    }
+    });
+});
+</script>
 @endsection

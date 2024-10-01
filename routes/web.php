@@ -12,6 +12,7 @@ use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\DocumentRecController;
 use App\Http\Controllers\DocumentSendController;
 use App\Http\Controllers\DocumentCenterController;
+use App\Http\Controllers\UploadFileController;
 
 Route::get('/', function () {
     return redirect('/document-rec');
@@ -100,6 +101,12 @@ Route::controller(DocumentCenterController::class)->prefix('document-center')->n
 });
 
 
+Route::controller(UploadFileController::class)->prefix('upload')->name('upload.')->group(function(){
+    Route::post('/deletefile', 'deletefile')->name('deletefile');
+
+});
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -110,5 +117,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 
 require __DIR__.'/auth.php';

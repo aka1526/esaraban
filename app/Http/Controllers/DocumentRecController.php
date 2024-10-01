@@ -16,6 +16,9 @@ use App\Models\SettingDoc;
 use App\Models\Section;
 
 use App\Http\Controllers\SettingDocController;
+use App\Http\Controllers\UploadFileController as UploadFile;
+
+
 
 class DocumentRecController extends Controller
 {    protected  $paginate =20;
@@ -90,10 +93,7 @@ class DocumentRecController extends Controller
        $runnumber= $data['docno'] ;
        $max_doc = $data['max_doc'] ;
        $prefix_doc=$data['prefix'] ;
-
-
         $doc_status="PENDING";
-
 
         $created_at=Carbon::now()->format("Y-m-d H:i:s");
         $created_by =isset(Auth::user()->name) ? Auth::user()->name : '';
@@ -152,6 +152,14 @@ class DocumentRecController extends Controller
 
       }
 
+
+      $Upload=false;
+
+      if ($request->hasfile('file')) {
+          $UploadFile= new UploadFile();
+          $Upload=  $UploadFile->uploadFile($request);
+      }
+
         return redirect('/document-rec')->with('msg', $act);
 
     }
@@ -202,6 +210,8 @@ class DocumentRecController extends Controller
             , 'updated_at'=>$updated_at
             , 'updated_by'=>$updated_by
         ]);
+
+
 
         return redirect('/document-rec')->with('msg', $act);
     }
