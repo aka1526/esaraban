@@ -99,7 +99,7 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="{{route('docrec.index')}}"    class="btn  btn-warning btn-sm"><i class="fa fa-arrow-left"></i> กลับ</a>
+                                <a href="{{route('docsend.index')}}"    class="btn  btn-warning btn-sm"><i class="fa fa-arrow-left"></i> กลับ</a>
                                 <button  type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> บันทึก</button>
                             </div>
                         </form>
