@@ -14,7 +14,7 @@ use App\Http\Controllers\DocumentSendController;
 use App\Http\Controllers\DocumentCenterController;
 
 Route::get('/', function () {
-    return view('dashboard.index');
+    return redirect('/document-rec');
 });
 
 Route::controller(MainMenuController::class)->prefix('mainmenu')->name('mainmenu.')->group(function(){
