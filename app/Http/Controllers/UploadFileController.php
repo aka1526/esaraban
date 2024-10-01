@@ -44,6 +44,7 @@ class UploadFileController  extends Controller{
 
             $uuid= str_replace('-', '', Str::uuid());
             $Document=Document::where('uuid',$ref_uuid)->first();
+            $doc_no="";
             if($Document){
                 $doc_no  =  $Document->doc_no;
             }
