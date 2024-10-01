@@ -170,7 +170,7 @@ class DocumentCenterController extends Controller
         $created_by =isset(Auth::user()->name) ? Auth::user()->name : '';
         $updated_at =Carbon::now()->format("Y-m-d H:i:s");
         $updated_by=isset(Auth::user()->name) ? Auth::user()->name : '';
-        $checkName= Section::where('uuid','=',$name)->where('type',$type)->count();
+        $checkName= Section::where('name','=',$name)->where('type',$type)->count();
         if($checkName==0){
             $uuid= str_replace('-', '', Str::uuid());
             $act=  Section::insert([
