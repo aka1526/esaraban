@@ -218,10 +218,10 @@ class DocumentCenterController extends Controller
 
         $uuid =   $request->uuid;
 
-        $Section=  Section::where('uuid','=',$uuid)->first();
+        $Document=  Document::where('uuid','=',$uuid)->first();
         $act=false;
-        if($Section){
-            $act= Section::where('uuid','=',$uuid)->delete();
+        if($Document){
+            $act= Document::where('uuid','=',$uuid)->delete();
         }
 
         if($act){
