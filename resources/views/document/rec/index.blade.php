@@ -159,7 +159,7 @@ $(document).on("click", '.btn-delete', function(e) {
     if (result.isConfirmed) {
     $.ajax({
             type: 'POST',
-            url: "{{route('sec-ex.delete')}}",
+            url: "{{route('docrec.delete')}}",
             data: {uuid: uuid,"_token": "{{ csrf_token() }}"},
             success: function (data){
                         Swal.fire({
