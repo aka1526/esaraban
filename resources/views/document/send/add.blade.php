@@ -83,7 +83,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="message">เรื่อง</label>
+                                    <label for="doc_subject">เรื่อง</label>
                                     <textarea id="doc_subject"
                                     rows="5" required="required" class="form-control" name="doc_subject" data-parsley-trigger="keyup" data-parsley-minlength="5" data-parsley-maxlength="300"
                                     data-parsley-minlength-message="ข้อความยาวไม่เกิน 300 ตัวอักษร"
