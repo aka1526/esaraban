@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('uuid',50)->primary();
             $table->string('ref_uuid',50)->nullable()->default('');
             $table->string('file_name',200)->nullable()->default('');
+             $table->string('doc_no',50)->nullable()->default('');
             $table->string('file_ext',50)->nullable()->default('');
             $table->string('created_at',50)->nullable()->default('');
             $table->string('created_by',200)->nullable()->default('');
