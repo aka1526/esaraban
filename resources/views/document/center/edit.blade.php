@@ -13,6 +13,8 @@
     $SectionOut=\App\Models\Section::where('type','EX')->OrderBy('name')->get();
     $Uploads=\App\Models\Uploads::where('ref_uuid',$data->uuid)->OrderBy('created_at')->get();
     $Projects=\App\Models\Project::where('stat','=','Y')->OrderBy('name')->get();
+    $docgroups=\App\Models\Docgroup::where('stat','=','Y')->OrderBy('name')->get();
+
 @endphp
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
