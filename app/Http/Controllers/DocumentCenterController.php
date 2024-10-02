@@ -34,7 +34,7 @@ class DocumentCenterController extends Controller
         $dataset=Document::where('doc_type','=',$this->doc_type)
         ->where(function($query) use ($search) {
             if ($search !="") {
-                $query->orWhere('runnumber','like', '%'.$search.'%')
+                $query->Where('runnumber','like', '%'.$search.'%')
                         ->orWhere('prefix_doc', 'like','%'.$search.'%')
                         ->orWhere('doc_group', 'like','%'.$search.'%')
                         ->orWhere('doc_project', 'like','%'.$search.'%')
