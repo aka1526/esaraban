@@ -12,12 +12,14 @@ $Uploads=\App\Models\Uploads::where('uuid','!=','')->OrderBy('created_at')->get(
 $arrSecret=  array();
 $arrUrgent=  array();
 $colorSecret=  array();
+$iconSecret=  array();
+
 $colorUrgent=  array();
 
 foreach ($Secret as $key => $value) {
     $arrSecret[$value->uuid]=$value->name;
     $colorSecret[$value->uuid]=$value->color;
-
+    $iconSecret[$value->uuid]=$value->faicon;
 }
 
 foreach ($Urgent as $key => $value) {
@@ -105,9 +107,8 @@ foreach ($Urgent as $key => $value) {
                                         <td> {{$dataset->firstItem() + $key }}</td>
                                         <td>{{ $row->runnumber  }}</td>
                                         <td>{{ Carbon::parse( $row->tra_date)->thaidate();  }}</td>
-                                        <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorUrgent[$row->lavel_urgent ]}}" style="width: 80px"><i class="fa fa-rocket"></i> {{ $arrUrgent[$row->lavel_urgent]}}</button></td>
-                                        <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorSecret[$row->lavel_secret ]}}" style="width: 80px"><i class="fa fa-send"></i> {{$arrSecret[$row->lavel_secret ]}}</button></td>
-
+                                        <td><button type="button" class="btn btn-sm  btn-rounded btn-{{$colorUrgent[$row->lavel_urgent ]}}" style="width: 120px"><i class="fa fa-rocket"></i> {{ $arrUrgent[$row->lavel_urgent]}}</button></td>
+                                        <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorSecret[$row->lavel_secret ]}}" style="width: 120px"><i class="fa {{$iconSecret[$row->lavel_secret ]}}"></i> {{$arrSecret[$row->lavel_secret ]}}</button></td>
 
                                         <td>{{ $row->doc_from  }}</td>
 
