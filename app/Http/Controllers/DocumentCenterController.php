@@ -32,6 +32,8 @@ class DocumentCenterController extends Controller
             if ($search !="") {
                 $query->orWhere('runnumber','like', '%'.$search.'%')
                         ->orWhere('prefix_doc', 'like','%'.$search.'%')
+                        ->orWhere('doc_group', 'like','%'.$search.'%')
+                        ->orWhere('doc_project', 'like','%'.$search.'%')
                         ->orWhere('doc_from', 'like','%'.$search.'%')
                         ->orWhere('doc_to', 'like','%'.$search.'%')
                         ->orWhere('doc_subject', 'like','%'.$search.'%');
