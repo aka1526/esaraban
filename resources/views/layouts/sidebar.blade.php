@@ -39,8 +39,9 @@
                 <ul class="nav-2-level collapse">
                     <li><a href="{{ route('sec-ex.index') }}">หน่วยงานภายนอก</a></li>
                     <li><a href="{{ route('sec-in.index') }}">หน่วยงานภายใน</a></li>
-                    <li><a href="{{ route('project.index') }}">ชื่อ Project</a></li>
+                    <li><a href="{{ route('project.index') }}">Project</a></li>
                     <li><a href="{{ route('docgroup.index') }}">กลุ่มเอกสาร</a></li>
+                    <li><a href="{{ route('docstatus.index') }}">สถานะเอกสาร</a></li>
                     <li><a href="{{ route('setting.index') }}">ตั้งค่าเอกสาร</a></li>
                     {{-- <li><a href="{{ route('mainmenu.index') }}">เพิ่มเมนูโปรแกรม</a></li> --}}
 

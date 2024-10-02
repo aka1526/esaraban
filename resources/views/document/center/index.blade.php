@@ -114,6 +114,8 @@ foreach ($Urgent as $key => $value) {
                                         <th>เลขที่เอกสาร</th>
                                         <th>วันที่รับ</th>
                                         <th>ความเร่งด่วน</th>
+                                        <th>สถานะเอกสาร</th>
+
                                         <th>โครงการ</th>
                                         <th>กลุ่มเอกสาร</th>
                                         <th>จากหน่วยงาน</th>
@@ -132,6 +134,8 @@ foreach ($Urgent as $key => $value) {
                                         <td>{{ $row->runnumber  }}</td>
                                         <td>{{ Carbon::parse( $row->tra_date)->thaidate();  }}</td>
                                         <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorUrgent[$row->lavel_urgent ]}}" style="width: 80px"><i class="fa fa-rocket"></i> {{ $arrUrgent[$row->lavel_urgent]}}</button></td>
+                                        <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorSecret[$row->lavel_secret ]}}" style="width: 80px"><i class="fa fa-send"></i> {{$arrSecret[$row->lavel_secret ]}}</button></td>
+
                                         <td>{{ $row->doc_project  }}</td>
                                         <td>{{ $row->doc_group  }}</td>
 

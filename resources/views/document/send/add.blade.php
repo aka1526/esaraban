@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-6 form-group ">
 
-                               <label   style="color: red;ffont-weight: 800;">ชั้นความลับ</label>
+                               <label   style="color: red;ffont-weight: 800;">สถานะเอกสาร</label>
                                 @foreach ($Secret as $key=> $item)
                                 <input type="radio" class="flat ml-2" name="lavel_secret" id="lavel_secret_{{ $item->uuid }}" value="{{ $item->uuid }}"   {{ $key==0 ? ' checked required' : ''}} /> {{ $item->name }}
                                 @endforeach

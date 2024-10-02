@@ -30,7 +30,7 @@ class DocumentSendController extends Controller
         $dataset=Document::where('doc_type','=',$this->doc_type)
         ->where(function($query) use ($search) {
             if ($search !="") {
-                $query->orWhere('runnumber','like', '%'.$search.'%')
+                $query->Where('runnumber','like', '%'.$search.'%')
                         ->orWhere('prefix_doc', 'like','%'.$search.'%')
                         ->orWhere('doc_from', 'like','%'.$search.'%')
                         ->orWhere('doc_no', 'like','%'.$search.'%')

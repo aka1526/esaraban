@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainMenuController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\DocgroupController;
+use App\Http\Controllers\DocstatusController;
 use App\Http\Controllers\SectionINController;
 use App\Http\Controllers\SectionEXController;
 use App\Http\Controllers\SettingDocController;
@@ -42,6 +43,16 @@ Route::controller(PositionController::class)->prefix('position')->name('position
 });
 
 Route::controller(DocgroupController::class)->prefix('docgroup')->name('docgroup.')->group(function(){
+    Route::match(array('GET', 'POST'),'/','index')->name('index');
+    Route::get('/add', 'add')->name('add');
+    Route::post('/save', 'save')->name('save');
+    Route::get('/edit/{UNID}', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::post('/delete', 'delete')->name('delete');
+
+});
+
+Route::controller(DocstatusController::class)->prefix('docstatus')->name('docstatus.')->group(function(){
     Route::match(array('GET', 'POST'),'/','index')->name('index');
     Route::get('/add', 'add')->name('add');
     Route::post('/save', 'save')->name('save');
