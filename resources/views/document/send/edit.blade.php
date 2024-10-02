@@ -131,7 +131,7 @@
                                       @foreach ($Uploads as $file )
                                       <tr>
                                         <th scope="row">1</th>
-                                        <td>{{ $file->file_ext }}</td>
+                                        <td class="text-center"><img src="{{'/icon/'.$file->file_ext.'.png'  }}" width="32px"></img></td>
                                         <td>{{ $file->file_name }}</td>
                                         <td>{{ $file->created_at }}</td>
                                         <td>
