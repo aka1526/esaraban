@@ -33,6 +33,9 @@ class DocumentSendController extends Controller
                 $query->orWhere('runnumber','like', '%'.$search.'%')
                         ->orWhere('prefix_doc', 'like','%'.$search.'%')
                         ->orWhere('doc_from', 'like','%'.$search.'%')
+                        ->orWhere('doc_no', 'like','%'.$search.'%')
+                        ->orWhere('doc_group', 'like','%'.$search.'%')
+                        ->orWhere('doc_project', 'like','%'.$search.'%')
                         ->orWhere('doc_to', 'like','%'.$search.'%')
                         ->orWhere('doc_subject', 'like','%'.$search.'%');
 
