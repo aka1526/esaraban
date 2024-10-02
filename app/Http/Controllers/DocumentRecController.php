@@ -102,6 +102,7 @@ class DocumentRecController extends Controller
       $act=false;
       if($uuid ==''){
         $uuid= str_replace('-', '', Str::uuid());
+        $request->uuid =$uuid;
         $act=  Document::insert([
             'uuid' =>$uuid
             ,'runnumber'=>$runnumber
@@ -154,8 +155,9 @@ class DocumentRecController extends Controller
 
 
       $Upload=false;
-
+    //  dd($request->all());
       if ($request->hasfile('file')) {
+         //dd($request->all());
           $UploadFile= new UploadFile();
           $Upload=  $UploadFile->uploadFile($request);
       }

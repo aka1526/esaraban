@@ -7,6 +7,8 @@
 use Illuminate\Support\Carbon;
 $Secret=\App\Models\SecretName::where('stat','Y')->OrderBy('uuid')->get();
 $Urgent=\App\Models\UrgentName::where('stat','Y')->OrderBy('uuid')->get();
+$Uploads=\App\Models\Uploads::where('uuid','!=','')->OrderBy('created_at')->get();
+
 $arrSecret=  array();
 $arrUrgent=  array();
 $colorSecret=  array();
@@ -92,6 +94,7 @@ foreach ($Urgent as $key => $value) {
                                         <th>เลขที่หนังสือ</th>
                                         <th>หนังสือลงวันที่</th>
                                         <th>ถึงหน่วยงาน</th>
+                                        <th>เอกสารแนบ</th>
                                         <th>Action</th>
 
                                     </tr>
@@ -111,7 +114,18 @@ foreach ($Urgent as $key => $value) {
                                         <td>{{ $row->doc_no  }}</td>
                                         <td>{{ Carbon::parse( $row->doc_date)->thaidate();  }}</td>
                                         <td>{{ $row->doc_subject  }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bars m-r-5"> เอกสารแนบ</i><i class="fa fa-angle-down"></i></button>
+                                                <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    @foreach ($Uploads->where('ref_uuid',$row->uuid) as $key=>$file )
+                                                    <li><a class="dropdown-item" href="javascript:;"  onclick="centeredPopup('{{ "/uploads/".$file->file_name }}')">{{ $file->file_desc }}</a></li>
+                                                    @endforeach
 
+                                                </ul>
+                                            </div>
+
+                                        </td>
                                         <td>
 
                                             <a href="{{ route('docsend.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i> แก้ไข</a>

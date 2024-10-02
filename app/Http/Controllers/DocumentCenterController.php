@@ -122,6 +122,7 @@ class DocumentCenterController extends Controller
       $act=false;
       if($uuid ==''){
         $uuid= str_replace('-', '', Str::uuid());
+        $request->uuid =$uuid;
         $act=  Document::insert([
             'uuid' =>$uuid
             ,'runnumber'=>$runnumber

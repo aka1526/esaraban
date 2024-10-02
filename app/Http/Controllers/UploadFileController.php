@@ -17,6 +17,7 @@ use App\Models\Document;
 class UploadFileController  extends Controller{
 
     public function uploadFile(Request $request){
+       //dd($request->all());
         // Validate the file input
     $request->validate([
         'file.*' => 'required|file', // Validate each file in the array
@@ -49,16 +50,18 @@ class UploadFileController  extends Controller{
                 $doc_no  =  $Document->doc_no;
             }
 
+            $file_desc= trim(str_replace(".".$file_ext,"", $file->getClientOriginalName()));
             $created_at=Carbon::now()->format("Y-m-d H:i:s");
             $created_by =isset(Auth::user()->name) ? Auth::user()->name : '';
             $updated_at =Carbon::now()->format("Y-m-d H:i:s");
             $updated_by=isset(Auth::user()->name) ? Auth::user()->name : '';
-
+            //dd($ref_uuid);
             $act=Uploads::insert([
                 'uuid'=>$uuid
                 ,'ref_uuid'=>$ref_uuid
                 ,'doc_no'=>$doc_no
               ,  'file_name'=>$fileName
+              , 'file_desc'=>$file_desc
               ,  'file_ext'=>$file_ext
               ,  'created_at'=>$created_at
               ,  'created_by'=>$created_by
