@@ -65,10 +65,10 @@
 
                                 <div class="col-md-2 form-group">
                                     <label >กลุ่มเอกสาร</label>
-                                    <select class="form-control select2_group"  id="doc_group" name="doc_group" required>
+                                    <select class="form-control select2_group"  id="doc_group" name="doc_group"  >
                                         <option value="">Choose option</option>
                                         @foreach ($docgroups as $key=>$item )
-                                        <option value="{{ $item->name }}" {{ $data->doc_project==$item->name? ' selected' : '' }} >{{ $item->name }}</option>
+                                        <option value="{{ $item->name }}" {{ $data->doc_group==$item->name? ' selected' : '' }} >{{ $item->name }}</option>
                                         @endforeach
 
                                     </select>

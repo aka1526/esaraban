@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label >กลุ่มเอกสาร</label>
-                                    <select class="form-control select2_group"  id="doc_group" name="doc_group" required>
+                                    <select class="form-control select2_group"  id="doc_group" name="doc_group"  >
                                         <option value="">Choose option</option>
                                         @foreach ($docgroups as $key=>$item )
                                         <option value="{{ $item->name }}" >{{ $item->name }}</option>

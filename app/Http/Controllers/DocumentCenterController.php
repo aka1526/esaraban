@@ -26,6 +26,7 @@ class DocumentCenterController extends Controller
         $tra_year =isset($request->tra_year) ? $request->tra_year :'';
         $tra_month =isset($request->tra_month) ? $request->tra_month :'';
         $search =isset($request->search) ? $request->search :'';
+        $doc_group =isset($request->doc_group) ? $request->doc_group :'';
 
         $dataset=Document::where('doc_type','=',$this->doc_type)
         ->where(function($query) use ($search) {
@@ -54,11 +55,16 @@ class DocumentCenterController extends Controller
                 return $query ;
             }
         })
-
+        ->where(function($query) use ($doc_group) {
+            if ($doc_group !="") {
+                $query->where('doc_group','=', $doc_group);
+                return $query ;
+            }
+        })
          ->Orderby('runnumber','desc')
         ->paginate($this->paginate);
 
-        return view('document.center.index',compact('dataset','search','tra_year','tra_month') );
+        return view('document.center.index',compact('dataset','doc_group','search','tra_year','tra_month') );
     }
 
     function add(Request $request){
