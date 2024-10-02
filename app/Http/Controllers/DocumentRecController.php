@@ -35,7 +35,10 @@ class DocumentRecController extends Controller
                 $query->orWhere('runnumber','like', '%'.$search.'%')
                         ->orWhere('prefix_doc', 'like','%'.$search.'%')
                         ->orWhere('doc_from', 'like','%'.$search.'%')
+                        ->orWhere('doc_group', 'like','%'.$search.'%')
+                        ->orWhere('doc_project', 'like','%'.$search.'%')
                         ->orWhere('doc_to', 'like','%'.$search.'%')
+                        ->orWhere('doc_no', 'like','%'.$search.'%')
                         ->orWhere('doc_subject', 'like','%'.$search.'%');
 
                 return $query ;
@@ -56,6 +59,7 @@ class DocumentRecController extends Controller
         })
 
          ->Orderby('runnumber','desc')
+         ->dd()
         ->paginate($this->paginate);
 
         return view('document.rec.index',compact('dataset','search','tra_year','tra_month') );
