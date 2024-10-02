@@ -120,17 +120,17 @@
                                 <table class="table table-bordered">
                                     <thead>
                                       <tr>
-                                        <th>#</th>
-                                        <th>File</th>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">File</th>
                                         <th>File Name</th>
                                         <th>Date Time</th>
                                         <th>Action</th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach ($Uploads as $file )
+                                      @foreach ($Uploads as $key=> $file )
                                       <tr>
-                                        <th scope="row">1</th>
+                                        <th class="text-center" scope="row">{{  $key+1 }}</th>
                                         <td class="text-center"><img src="{{'/icon/'.$file->file_ext.'.png'  }}" width="32px"></img></td>
                                         <td>{{ $file->file_name }}</td>
                                         <td>{{ $file->created_at }}</td>
