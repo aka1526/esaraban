@@ -8,6 +8,7 @@ use App\Http\Controllers\DocgroupController;
 use App\Http\Controllers\SectionINController;
 use App\Http\Controllers\SectionEXController;
 use App\Http\Controllers\SettingDocController;
+use App\Http\Controllers\ProjectController;
 
 
 use App\Http\Controllers\DocumentRecController;
@@ -38,10 +39,19 @@ Route::controller(PositionController::class)->prefix('position')->name('position
     Route::get('/edit/{UNID}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::post('/delete', 'delete')->name('delete');
-
 });
 
 Route::controller(DocgroupController::class)->prefix('docgroup')->name('docgroup.')->group(function(){
+    Route::match(array('GET', 'POST'),'/','index')->name('index');
+    Route::get('/add', 'add')->name('add');
+    Route::post('/save', 'save')->name('save');
+    Route::get('/edit/{UNID}', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::post('/delete', 'delete')->name('delete');
+
+});
+
+Route::controller(ProjectController::class)->prefix('project')->name('project.')->group(function(){
     Route::match(array('GET', 'POST'),'/','index')->name('index');
     Route::get('/add', 'add')->name('add');
     Route::post('/save', 'save')->name('save');

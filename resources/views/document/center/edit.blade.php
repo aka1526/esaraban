@@ -12,7 +12,7 @@
     $SectionIn=\App\Models\Section::where('type','IN')->OrderBy('name')->get();
     $SectionOut=\App\Models\Section::where('type','EX')->OrderBy('name')->get();
     $Uploads=\App\Models\Uploads::where('ref_uuid',$data->uuid)->OrderBy('created_at')->get();
-
+    $Projects=\App\Models\Project::where('stat','=','Y')->OrderBy('name')->get();
 @endphp
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
@@ -58,9 +58,16 @@
                                     <label >หนังสือลงวันที่</label>
                                     <input type="date"  id="doc_date" name="doc_date" class="form-control" value="{{ $data->doc_date }}"  placeholder="" required>
                                 </div>
-                                <div class="col-md-2 form-group">
+                                <div class="col-md-4 form-group">
                                     <label >โครงการ</label>
-                                    <input type="text"  id="doc_project" name="doc_project" class="form-control" value="{{ $data->doc_project }}"  placeholder=""  >
+                                    <select class="form-control select2_group"  id="doc_project" name="doc_project"  >
+                                        <option value="">Choose option</option>
+                                        @foreach ($Projects as $key=>$item )
+                                        <option value="{{ $item->name }}" {{ $data->doc_project==$item->name? ' selected' : '' }}>{{ $item->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
                                 </div>
 
                                 <div class="col-md-2 form-group">

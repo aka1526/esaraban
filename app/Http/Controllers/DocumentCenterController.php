@@ -15,6 +15,8 @@ use App\Models\Document;
 use App\Models\SettingDoc;
 use App\Models\Section;
 use App\Models\Docgroup;
+use App\Models\Project;
+
 use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\UploadFileController as UploadFile;
 
@@ -27,6 +29,7 @@ class DocumentCenterController extends Controller
         $tra_month =isset($request->tra_month) ? $request->tra_month :'';
         $search =isset($request->search) ? $request->search :'';
         $doc_group =isset($request->doc_group) ? $request->doc_group :'';
+        $doc_project =isset($request->doc_project) ? $request->doc_project :'';
 
         $dataset=Document::where('doc_type','=',$this->doc_type)
         ->where(function($query) use ($search) {
@@ -52,6 +55,12 @@ class DocumentCenterController extends Controller
         ->where(function($query) use ($tra_month) {
             if ($tra_month !="") {
                 $query->where('tra_month','=', $tra_month);
+                return $query ;
+            }
+        })
+        ->where(function($query) use ($doc_project) {
+            if ($doc_project !="") {
+                $query->where('doc_project','=', $doc_project);
                 return $query ;
             }
         })
@@ -189,6 +198,28 @@ class DocumentCenterController extends Controller
                 'uuid'=>$uuid
                , 'name'=>$name
                , 'type'=>$type
+                , 'created_at'=>$created_at
+                , 'created_by'=>$created_by
+                , 'updated_at'=>$updated_at
+                , 'updated_by'=>$updated_by
+            ]);
+        }
+
+    }
+
+    public function addProject ($name){
+
+        $created_at=Carbon::now()->format("Y-m-d H:i:s");
+        $created_by =isset(Auth::user()->name) ? Auth::user()->name : '';
+        $updated_at =Carbon::now()->format("Y-m-d H:i:s");
+        $updated_by=isset(Auth::user()->name) ? Auth::user()->name : '';
+        $checkName= Project::where('name','=',$name)->count();
+        if($checkName==0 && $name !=''){
+            $uuid= str_replace('-', '', Str::uuid());
+            $act=  Project::insert([
+                'uuid'=>$uuid
+               , 'name'=>$name
+
                 , 'created_at'=>$created_at
                 , 'created_by'=>$created_by
                 , 'updated_at'=>$updated_at
