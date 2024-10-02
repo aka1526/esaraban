@@ -70,6 +70,7 @@ class DocumentCenterController extends Controller
                 $query->where('doc_group','=', $doc_group);
                 return $query ;
             }
+
         })
          ->Orderby('runnumber','desc')
         ->paginate($this->paginate);
