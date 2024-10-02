@@ -145,7 +145,8 @@ foreach ($Urgent as $key => $value) {
                                                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bars m-r-5"> เอกสารแนบ</i><i class="fa fa-angle-down"></i></button>
                                                 <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                     @foreach ($Uploads->where('ref_uuid',$row->uuid) as $key=>$file )
-                                                    <li><a class="dropdown-item" href="javascript:;"  onclick="centeredPopup('{{ "/uploads/".$file->file_name }}')">{{ $file->file_desc }}</a></li>
+                                                    <li><a class="dropdown-item" href="javascript:;"
+                                                        onclick="centeredPopup('{{ "/uploads/".$file->file_name }}')">{{ $file->file_desc }}</a></li>
                                                     @endforeach
 
                                                 </ul>
@@ -173,14 +174,13 @@ foreach ($Urgent as $key => $value) {
 @endsection
 @section("js")
  <!-- CORE PLUGINS-->
- <script src="/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
- <script src="/assets/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
- <script src="/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
  <script src="/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
- <script src="/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
- <script src="/assets/js/app.min.js" type="text/javascript"></script>
+<script src="/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/assets/js/app.min.js" type="text/javascript"></script>
 <!-- Select2 -->
 <script src="/assets/vendors/select2/dist/js/select2.full.min.js"></script>
+
+
  <script>
 $(document).ready(function() {
     init_select2();
