@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('uuid',50)->primary();
             $table->string('runnumber',50)->nullable()->index();
             $table->string('prefix_doc',50)->nullable()->index();
-            $table->integer('tra_yearc')->nullable()->index();
+            $table->integer('tra_year')->nullable()->index();
             $table->integer('tra_month')->nullable()->index();
             $table->date('tra_date')->nullable() ;
             $table->integer('max_doc')->nullable()->default(0) ;

@@ -14,7 +14,7 @@ use Auth;
 use App\Models\Document;
 use App\Models\SettingDoc;
 use App\Models\Section;
-
+use App\Models\Docgroup;
 use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\UploadFileController as UploadFile;
 
@@ -70,12 +70,14 @@ class DocumentCenterController extends Controller
         $lavel_secret =isset($request->lavel_secret) ? $request->lavel_secret :'A';
         $doc_no =isset($request->doc_no) ? $request->doc_no :'';
         $doc_date =isset($request->doc_date) ? $request->doc_date :'';
-
+        $doc_project =isset($request->doc_project) ? $request->doc_project :'';
+        $doc_group  =isset($request->doc_group) ? $request->doc_group :'';
         $doc_from =isset($request->doc_from) ? $request->doc_from :'';
         $doc_to =isset($request->doc_to) ? $request->doc_to :'';
 
         $this->addASection ($doc_from,"IN");
         $this->addASection ($doc_to,"IN");
+        $this->addDocgroup ($doc_group);
 
         $doc_subject =isset($request->doc_subject) ? $request->doc_subject :'';
 
@@ -111,7 +113,8 @@ class DocumentCenterController extends Controller
             ,'tra_year'=>$tra_year
             ,'tra_month'=>$tra_month
             ,'tra_date'=>$tra_date
-
+            ,'doc_project'=>$doc_project
+            ,'doc_group'=>$doc_group
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
             , 'doc_type'=>$this->doc_type
@@ -136,7 +139,8 @@ class DocumentCenterController extends Controller
             ,'tra_year'=>$tra_year
             ,'tra_month'=>$tra_month
             ,'tra_date'=>$tra_date
-
+            ,'doc_project'=>$doc_project
+            ,'doc_group'=>$doc_group
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
             , 'doc_type'=>$this->doc_type
@@ -171,7 +175,7 @@ class DocumentCenterController extends Controller
         $updated_at =Carbon::now()->format("Y-m-d H:i:s");
         $updated_by=isset(Auth::user()->name) ? Auth::user()->name : '';
         $checkName= Section::where('name','=',$name)->where('type',$type)->count();
-        if($checkName==0){
+        if($checkName==0 && $name !='' ){
             $uuid= str_replace('-', '', Str::uuid());
             $act=  Section::insert([
                 'uuid'=>$uuid
@@ -185,6 +189,29 @@ class DocumentCenterController extends Controller
         }
 
     }
+
+    public function addDocgroup ($name){
+
+        $created_at=Carbon::now()->format("Y-m-d H:i:s");
+        $created_by =isset(Auth::user()->name) ? Auth::user()->name : '';
+        $updated_at =Carbon::now()->format("Y-m-d H:i:s");
+        $updated_by=isset(Auth::user()->name) ? Auth::user()->name : '';
+        $checkName= Docgroup::where('name','=',$name)->count();
+        if($checkName==0 && $name !=''){
+            $uuid= str_replace('-', '', Str::uuid());
+            $act=  Docgroup::insert([
+                'uuid'=>$uuid
+               , 'name'=>$name
+
+                , 'created_at'=>$created_at
+                , 'created_by'=>$created_by
+                , 'updated_at'=>$updated_at
+                , 'updated_by'=>$updated_by
+            ]);
+        }
+
+    }
+
 
     public function edit(Request $request,$uuid) {
 

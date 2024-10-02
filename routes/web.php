@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainMenuController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\DocgroupController;
 use App\Http\Controllers\SectionINController;
 use App\Http\Controllers\SectionEXController;
 use App\Http\Controllers\SettingDocController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\DocumentRecController;
 use App\Http\Controllers\DocumentSendController;
 use App\Http\Controllers\DocumentCenterController;
 use App\Http\Controllers\UploadFileController;
+use App\Models\Docgroup;
 
 Route::get('/', function () {
     return redirect('/document-rec');
@@ -30,6 +32,16 @@ Route::controller(MainMenuController::class)->prefix('mainmenu')->name('mainmenu
 });
 
 Route::controller(PositionController::class)->prefix('position')->name('position.')->group(function(){
+    Route::match(array('GET', 'POST'),'/','index')->name('index');
+    Route::get('/add', 'add')->name('add');
+    Route::post('/save', 'save')->name('save');
+    Route::get('/edit/{UNID}', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::post('/delete', 'delete')->name('delete');
+
+});
+
+Route::controller(DocgroupController::class)->prefix('docgroup')->name('docgroup.')->group(function(){
     Route::match(array('GET', 'POST'),'/','index')->name('index');
     Route::get('/add', 'add')->name('add');
     Route::post('/save', 'save')->name('save');

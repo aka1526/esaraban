@@ -111,7 +111,7 @@
 </div>
 @endsection
 @section("js")
- <script src="/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
+<script src="/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
 <script src="/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="/assets/js/app.min.js" type="text/javascript"></script>
 <!-- Select2 -->
