@@ -21,6 +21,7 @@
                         @csrf
 
                             <div class="row">
+
                                 <div class="col-sm-6 form-group">
                                     <label >ชื่อ Project</label>
                                     <input type="text"  id="name" name="name" class="form-control" value=""  placeholder="" required>

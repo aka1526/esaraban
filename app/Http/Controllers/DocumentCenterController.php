@@ -101,6 +101,8 @@ class DocumentCenterController extends Controller
         $doc_date =isset($request->doc_date) ? $request->doc_date :'';
         $doc_project =isset($request->doc_project) ? $request->doc_project :'';
         $doc_group  =isset($request->doc_group) ? $request->doc_group :'';
+        $type  =isset($request->type) ? $request->type :'';
+
         $doc_from =isset($request->doc_from) ? $request->doc_from :'';
         $doc_to =isset($request->doc_to) ? $request->doc_to :'';
 
@@ -145,6 +147,7 @@ class DocumentCenterController extends Controller
             ,'tra_date'=>$tra_date
             ,'doc_project'=>$doc_project
             ,'doc_group'=>$doc_group
+            ,'type'=>$type
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
             , 'doc_type'=>$this->doc_type
@@ -171,6 +174,7 @@ class DocumentCenterController extends Controller
             ,'tra_date'=>$tra_date
             ,'doc_project'=>$doc_project
             ,'doc_group'=>$doc_group
+            ,'type'=>$type
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
             , 'doc_type'=>$this->doc_type

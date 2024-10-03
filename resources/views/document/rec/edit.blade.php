@@ -74,7 +74,7 @@
                                     </select>
 
                                 </div>
-                                <div class="col-md-2 form-group">
+                                <div class="col-md-4 form-group">
                                     <label >กลุ่มเอกสาร</label>
                                     <select class="form-control select2_group"  id="doc_group" name="doc_group"  >
                                         <option value="">Choose option</option>
@@ -85,7 +85,7 @@
                                     </select>
 
                                 </div>
-                                <div class="col-md-2 form-group">
+                                <div class="col-md-4 form-group">
                                     <label >ประเภทเอกสาร</label>
                                     <select class="form-control select2_group"  id="type" name="type"  >
                                         <option value="">Choose option</option>
@@ -123,12 +123,12 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="doc_subject">เรื่อง</label>
-                                    <textarea id="doc_subject" required="required"
+                                    <textarea id="doc_subject" name="doc_subject" required="required"
                                     rows="5"
-                                    class="form-control" name="doc_subject"
+                                    class="form-control"
                                     data-parsley-trigger="keyup" data-parsley-minlength="5" data-parsley-maxlength="300"
                                     data-parsley-minlength-message="ข้อความยาวไม่เกิน 300 ตัวอักษร"
-                                    data-parsley-validation-threshold="3">{!! $data->doc_to !!}</textarea>
+                                    data-parsley-validation-threshold="3">{!! $data->doc_subject !!}</textarea>
 
                                 </div>
                             </div>

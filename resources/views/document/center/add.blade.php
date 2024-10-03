@@ -73,7 +73,7 @@
                                     </select>
 
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label >กลุ่มเอกสาร</label>
                                     <select class="form-control select2_group"  id="doc_group" name="doc_group"  >
                                         <option value="">Choose option</option>
@@ -84,7 +84,7 @@
                                     </select>
 
                                 </div>
-                                <div class="col-md-2 form-group">
+                                <div class="col-md-4 form-group">
                                     <label >ประเภทเอกสาร</label>
                                     <select class="form-control select2_group"  id="type" name="type"  >
                                         <option value="">Choose option</option>

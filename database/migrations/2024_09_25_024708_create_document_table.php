@@ -25,7 +25,7 @@ return new class extends Migration
              $table->string('doc_type',50)->nullable()->index();
             $table->string('lavel_urgent',50)->nullable()->index();
             $table->string('lavel_secret',50)->nullable()->index();
-            $table->string('doc_status',50)->nullable()->default('PENDING'); //  PENDING FINISH CANCEL
+            $table->string('doc_status',50)->nullable()->default(''); //  PENDING FINISH CANCEL
             $table->string('doc_no',50)->nullable()->default('');
             $table->date('doc_date')->nullable();
             $table->string('doc_from',200)->nullable()->default('');

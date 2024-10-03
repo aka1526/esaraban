@@ -101,6 +101,10 @@ class DocumentSendController extends Controller
         $doc_from =isset($request->doc_from) ? $request->doc_from :'';
         $doc_to =isset($request->doc_to) ? $request->doc_to :'';
 
+        $doc_project =isset($request->doc_project) ? $request->doc_project :'';
+        $doc_group =isset($request->doc_group) ? $request->doc_group :'';
+        $type =isset($request->type) ? $request->type :'';
+
         $this->addASection ($doc_from,"EX");
         $this->addASection ($doc_to,"IN");
 
@@ -142,6 +146,11 @@ class DocumentSendController extends Controller
 
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
+
+            ,'doc_project'=>$doc_project
+            ,'doc_group'=>$doc_group
+            ,'type'=>$type
+
             , 'doc_type'=>$this->doc_type
             , 'doc_status'=>$doc_status
             , 'doc_no'=>$doc_no
@@ -167,6 +176,11 @@ class DocumentSendController extends Controller
 
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
+
+            ,'doc_project'=>$doc_project
+            ,'doc_group'=>$doc_group
+            ,'type'=>$type
+
             , 'doc_type'=>$this->doc_type
             , 'doc_status'=>$doc_status
             , 'doc_no'=>$doc_no

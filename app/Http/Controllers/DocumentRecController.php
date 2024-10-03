@@ -102,6 +102,11 @@ class DocumentRecController extends Controller
         $doc_from =isset($request->doc_from) ? $request->doc_from :'';
         $doc_to =isset($request->doc_to) ? $request->doc_to :'';
 
+        $doc_project =isset($request->doc_project) ? $request->doc_project :'';
+        $doc_group =isset($request->doc_group) ? $request->doc_group :'';
+        $type =isset($request->type) ? $request->type :'';
+
+
         $this->addASection ($doc_from,"EX");
         $this->addASection ($doc_to,"IN");
 
@@ -140,6 +145,10 @@ class DocumentRecController extends Controller
 
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
+            ,'doc_project'=>$doc_project
+            ,'doc_group'=>$doc_group
+            ,'type'=>$type
+
             , 'doc_type'=>$this->doc_type
             , 'doc_status'=>$doc_status
             , 'doc_no'=>$doc_no
@@ -162,6 +171,10 @@ class DocumentRecController extends Controller
             ,'tra_year'=>$tra_year
             ,'tra_month'=>$tra_month
             ,'tra_date'=>$tra_date
+
+            ,'doc_project'=>$doc_project
+            ,'doc_group'=>$doc_group
+            ,'type'=>$type
 
             , 'lavel_urgent'=>$lavel_urgent
             , 'lavel_secret'=>$lavel_secret
@@ -224,6 +237,7 @@ class DocumentRecController extends Controller
 
     public function update(Request $request) {
         $uuid =$request->uuid;
+        dd($uuid );
         $name =isset($request->name) ? $request->name :'';
 
         $created_at=Carbon::now()->format("Y-m-d H:i:s");

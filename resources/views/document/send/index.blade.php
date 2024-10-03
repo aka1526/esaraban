@@ -123,14 +123,14 @@ foreach ($Urgent as $key => $value) {
                                 <thead>
                                     <tr class="bg-primary">
                                         <th>#</th>
-                                        <th>เลขที่ส่ง</th>
+                                        <th>Project</th>
                                         <th>วันที่รับ</th>
                                         <th>ความเร่งด่วน</th>
                                         <th>สถานะเอกสาร</th>
                                         <th>จากหน่วยงาน</th>
                                         <th>เลขที่หนังสือ</th>
                                         <th>หนังสือลงวันที่</th>
-                                        <th>ถึงหน่วยงาน</th>
+                                        <th>ถึงบริษัท</th>
                                         <th>เอกสารแนบ</th>
                                         <th>Action</th>
 
@@ -140,7 +140,7 @@ foreach ($Urgent as $key => $value) {
                                     @foreach ($dataset as $key=>$row )
                                     <tr>
                                         <td> {{$dataset->firstItem() + $key }}</td>
-                                        <td>{{ $row->runnumber  }}</td>
+                                        <td>{{ $row->doc_project  }}</td>
                                         <td>{{ Carbon::parse( $row->tra_date)->thaidate();  }}</td>
                                         <td><button type="button" class="btn btn-sm  btn-rounded btn-{{$colorUrgent[$row->lavel_urgent ]}}" style="width: 120px"><i class="fa fa-rocket"></i> {{ $arrUrgent[$row->lavel_urgent]}}</button></td>
                                         <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorSecret[$row->lavel_secret ]}}" style="width: 120px"><i class="fa {{$iconSecret[$row->lavel_secret ]}}"></i> {{$arrSecret[$row->lavel_secret ]}}</button></td>

@@ -107,7 +107,7 @@
 
                                 </div>
                                 <div class="col-md-4 form-group">
-                                    <label >ถึงหน่วยงาน</label>
+                                    <label >ถึงบริษัท</label>
                                     <select class="form-control select2_group"  id="doc_to" name="doc_to" required>
                                         <option value="">Choose option</option>
                                         @foreach ($SectionOut as $key=>$item )
@@ -127,7 +127,7 @@
                                     class="form-control" name="doc_subject"
                                     data-parsley-trigger="keyup" data-parsley-minlength="5" data-parsley-maxlength="300"
                                     data-parsley-minlength-message="ข้อความยาวไม่เกิน 300 ตัวอักษร"
-                                    data-parsley-validation-threshold="3">{!! $data->doc_to !!}</textarea>
+                                    data-parsley-validation-threshold="3">{!! $data->doc_subject !!}</textarea>
 
                                 </div>
                             </div>
