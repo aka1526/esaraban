@@ -95,10 +95,10 @@
 
                                 </div>
                                 <div class="col-md-4 form-group">
-                                    <label >บริษัท</label>
+                                    <label >จากหน่วยงาน</label>
                                     <select class="form-control select2_group"  id="doc_from" name="doc_from" required>
                                         <option value="">Choose option</option>
-                                        @foreach ($SectionOut as $key=>$item )
+                                        @foreach ($SectionIn as $key=>$item )
                                         <option value="{{ $item->name }}" {{ $data->doc_from==$item->name ? 'selected' : '' }}>{{ $item->name }}</option>
                                         @endforeach
 

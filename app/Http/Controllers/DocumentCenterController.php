@@ -106,8 +106,8 @@ class DocumentCenterController extends Controller
         $doc_from =isset($request->doc_from) ? $request->doc_from :'';
         $doc_to =isset($request->doc_to) ? $request->doc_to :'';
 
-        $this->addASection ($doc_from,"IN");
-        $this->addASection ($doc_to,"IN");
+        // $this->addASection ($doc_from,"IN");
+        // $this->addASection ($doc_to,"IN");
         $this->addDocgroup ($doc_group);
 
         $doc_subject =isset($request->doc_subject) ? $request->doc_subject :'';

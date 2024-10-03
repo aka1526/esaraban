@@ -96,7 +96,7 @@
 
                                 </div>
                                 <div class="col-md-4 form-group">
-                                    <label >บริษัท</label>
+                                    <label >จากหน่วยงาน</label>
                                     <select class="form-control select2_group"  id="doc_from" name="doc_from" required>
                                         <option value="">Choose option</option>
                                         @foreach ($SectionIn as $key=>$item )
