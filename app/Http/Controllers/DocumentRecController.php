@@ -15,6 +15,7 @@ use App\Models\Document;
 use App\Models\SettingDoc;
 use App\Models\Section;
 use App\Models\Doctype;
+use App\Models\Uploads;
 
 use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\UploadFileController as UploadFile;

@@ -33,6 +33,7 @@ class DocumentCenterController extends Controller
         $doc_group =isset($request->doc_group) ? $request->doc_group :'';
         $doc_project =isset($request->doc_project) ? $request->doc_project :'';
         $type=isset($request->type) ? $request->type :'';
+
         $arrUpload=array();
         if($search!=''){
             $Uploads=Uploads::select('ref_uuid')->where('file_desc','like','%'.$search.'%')
