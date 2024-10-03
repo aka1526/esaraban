@@ -35,7 +35,7 @@
 
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 form-group ">
+                            {{-- <div class="col-md-6 form-group ">
 
                             <label style="color: red;ffont-weight: 400;">ความเร่งด่วน</label>
                             @foreach ($Urgent as $key=> $item)
@@ -43,7 +43,7 @@
                             @endforeach
 
 
-                            </div>
+                            </div> --}}
                             <div class="col-md-6 form-group ">
 
                                <label   style="color: red;ffont-weight: 800;">สถานะเอกสาร</label>
