@@ -17,6 +17,7 @@ use App\Models\Section;
 use App\Models\Docgroup;
 use App\Models\Project;
 use App\Models\Doctype;
+use App\Models\Uploads;
 
 use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\UploadFileController as UploadFile;
@@ -32,8 +33,21 @@ class DocumentCenterController extends Controller
         $doc_group =isset($request->doc_group) ? $request->doc_group :'';
         $doc_project =isset($request->doc_project) ? $request->doc_project :'';
         $type=isset($request->type) ? $request->type :'';
+        $arrUpload=array();
+        if($search!=''){
+            $Uploads=Uploads::select('ref_uuid')->where('file_desc','like','%'.$search.'%')
+                    ->groupBy('ref_uuid')->get();
+
+            if($Uploads->count()>0){
+                foreach ($Uploads as $key=>$item){
+                    $arrUpload[]= $item->ref_uuid;
+                }
+            }
+        }
+
+
         $dataset=Document::where('doc_type','=',$this->doc_type)
-        ->where(function($query) use ($search) {
+        ->where(function($query) use ($search,$arrUpload) {
             if ($search !="") {
                 $query->Where('runnumber','like', '%'.$search.'%')
                         ->orWhere('prefix_doc', 'like','%'.$search.'%')
@@ -44,6 +58,9 @@ class DocumentCenterController extends Controller
                         ->orWhere('doc_to', 'like','%'.$search.'%')
                         ->orWhere('doc_no', 'like','%'.$search.'%')
                         ->orWhere('doc_subject', 'like','%'.$search.'%');
+                if(count($arrUpload)>0){
+                    $query->orWhereIn('uuid',$arrUpload);
+                }
 
                 return $query ;
             }
@@ -74,6 +91,7 @@ class DocumentCenterController extends Controller
             }
 
         })
+
         ->where(function($query) use ($type) {
             if ($type !="") {
                 $query->where('type','=', $type);
@@ -81,7 +99,7 @@ class DocumentCenterController extends Controller
             }
 
         })
-
+        //->dd()
          ->Orderby('runnumber','desc')
         ->paginate($this->paginate);
 
