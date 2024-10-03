@@ -13,6 +13,10 @@
     $SectionOut=\App\Models\Section::where('type','EX')->OrderBy('name')->get();
     $Uploads=\App\Models\Uploads::where('ref_uuid',$data->uuid)->OrderBy('created_at')->get();
 
+    $docgroups=\App\Models\Docgroup::where('stat','=','Y')->OrderBy('name')->get();
+    $Projects=\App\Models\Project::where('stat','=','Y')->OrderBy('name')->get();
+    $types=\App\Models\Doctype::where('stat','=','Y')->OrderBy('name')->get();
+
 @endphp
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
@@ -57,6 +61,39 @@
                                 <div class="col-md-2 form-group">
                                     <label >หนังสือลงวันที่</label>
                                     <input type="date"  id="doc_date" name="doc_date" class="form-control" value="{{ $data->doc_date }}"  placeholder="" required>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label >โครงการ</label>
+                                    <select class="form-control select2_group"  id="doc_project" name="doc_project"  >
+                                        <option value="">Choose option</option>
+                                        @foreach ($Projects as $key=>$item )
+                                        <option value="{{ $item->name }}" {{  $data->doc_project==$item->name ? 'selected' : '' }}>{{ $item->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label >กลุ่มเอกสาร</label>
+                                    <select class="form-control select2_group"  id="doc_group" name="doc_group"  >
+                                        <option value="">Choose option</option>
+                                        @foreach ($docgroups as $key=>$item )
+                                        <option value="{{ $item->name }}" {{  $data->doc_group==$item->name ? 'selected' : '' }}>{{ $item->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label >ประเภทเอกสาร</label>
+                                    <select class="form-control select2_group"  id="type" name="type"  >
+                                        <option value="">Choose option</option>
+                                        @foreach ($types as $key=>$item )
+                                        <option value="{{ $item->name }}" {{  $data->type==$item->name ? 'selected' : '' }}>{{ $item->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label >จากหน่วยงาน</label>
@@ -132,7 +169,7 @@
                                       <tr>
                                         <th class="text-center" scope="row">{{  $key+1 }}</th>
                                         <td class="text-center"><img src="{{'/icon/'.$file->file_ext.'.png'  }}" width="32px"></img></td>
-                                        <td>{{ $file->file_name }}</td>
+                                        <td>{{ $file->file_desc }}</td>
                                         <td>{{ $file->created_at }}</td>
                                         <td>
                                             <a href="javascript:void(0)" data-uuid="{{ $file->uuid }}"

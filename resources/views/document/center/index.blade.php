@@ -12,6 +12,8 @@ $Urgent=\App\Models\UrgentName::where('stat','Y')->OrderBy('uuid')->get();
 $docGroup=\App\Models\Docgroup::where('stat','Y')->OrderBy('uuid')->get();
 $Projects=\App\Models\Project::where('stat','=','Y')->OrderBy('name')->get();
 $Uploads=\App\Models\Uploads::where('uuid','!=','')->OrderBy('created_at')->get();
+$types=\App\Models\Doctype::where('stat','=','Y')->OrderBy('name')->get();
+
 $arrSecret=  array();
 $arrUrgent=  array();
 $colorSecret=  array();
@@ -71,6 +73,17 @@ foreach ($Urgent as $key => $value) {
                                             <option value="">Choose option</option>
                                             @foreach ($docGroup as $key=>$item )
                                             <option value="{{ $item->name }}" {{ $doc_group==$item->name? ' selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label >ประเภทเอกสาร</label>
+                                        <select class="form-control select2_group"  id="type" name="type"  >
+                                            <option value="">Choose option</option>
+                                            @foreach ($types as $key=>$item )
+                                            <option value="{{ $item->name }}" {{ $type==$item->name ? 'selected' : '' }}>{{ $item->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -167,6 +180,12 @@ foreach ($Urgent as $key => $value) {
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $dataset->links('pagination.default', [
+                                'paginator' => $dataset,
+                                'search' => isset($search) ? $search : '',
+
+                                'link_limit' => $dataset->perPage(),
+                            ]) }}
                         </div>
                     </div>
                     </div>

@@ -55,6 +55,12 @@
                                  @endforeach
                               </tbody>
                         </table>
+                        {{ $dataset->links('pagination.default', [
+                                'paginator' => $dataset,
+                                'search' => isset($search) ? $search : '',
+
+                                'link_limit' => $dataset->perPage(),
+                            ]) }}
                     </div>
                 </div>
             </div>

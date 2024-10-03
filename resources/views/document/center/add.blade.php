@@ -13,7 +13,7 @@
 
     $docgroups=\App\Models\Docgroup::where('stat','=','Y')->OrderBy('name')->get();
     $Projects=\App\Models\Project::where('stat','=','Y')->OrderBy('name')->get();
-
+    $types=\App\Models\Doctype::where('stat','=','Y')->OrderBy('name')->get();
 
 @endphp
 <div class="content-wrapper">
@@ -84,8 +84,19 @@
                                     </select>
 
                                 </div>
+                                <div class="col-md-2 form-group">
+                                    <label >ประเภทเอกสาร</label>
+                                    <select class="form-control select2_group"  id="type" name="type"  >
+                                        <option value="">Choose option</option>
+                                        @foreach ($types as $key=>$item )
+                                        <option value="{{ $item->name }}"  >{{ $item->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
                                 <div class="col-md-4 form-group">
-                                    <label >บริษัท/หน่วยงาน</label>
+                                    <label >บริษัท</label>
                                     <select class="form-control select2_group"  id="doc_from" name="doc_from" required>
                                         <option value="">Choose option</option>
                                         @foreach ($SectionIn as $key=>$item )

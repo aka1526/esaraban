@@ -14,6 +14,7 @@ use Auth;
 use App\Models\Document;
 use App\Models\SettingDoc;
 use App\Models\Section;
+use App\Models\Doctype;
 
 use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\UploadFileController as UploadFile;
@@ -28,7 +29,9 @@ class DocumentRecController extends Controller
         $tra_year =isset($request->tra_year) ? $request->tra_year :'';
         $tra_month =isset($request->tra_month) ? $request->tra_month :'';
         $search =isset($request->search) ? $request->search :'';
-
+        $doc_group =isset($request->doc_group) ? $request->doc_group :'';
+        $doc_project =isset($request->doc_project) ? $request->doc_project :'';
+        $type=isset($request->type) ? $request->type :'';
         $dataset=Document::where('doc_type','=',$this->doc_type)
         ->where(function($query) use ($search) {
             if ($search !="") {
@@ -37,6 +40,7 @@ class DocumentRecController extends Controller
                         ->orWhere('doc_from', 'like','%'.$search.'%')
                         ->orWhere('doc_group', 'like','%'.$search.'%')
                         ->orWhere('doc_project', 'like','%'.$search.'%')
+                        ->orWhere('type', 'like','%'.$search.'%')
                         ->orWhere('doc_to', 'like','%'.$search.'%')
                         ->orWhere('doc_no', 'like','%'.$search.'%')
                         ->orWhere('doc_subject', 'like','%'.$search.'%');
@@ -57,11 +61,30 @@ class DocumentRecController extends Controller
                 return $query ;
             }
         })
+        ->where(function($query) use ($doc_project) {
+            if ($doc_project !="") {
+                $query->where('doc_project','=', $doc_project);
+                return $query ;
+            }
+        })
+        ->where(function($query) use ($doc_group) {
+            if ($doc_group !="") {
+                $query->where('doc_group','=', $doc_group);
+                return $query ;
+            }
 
+        })
+        ->where(function($query) use ($type) {
+            if ($type !="") {
+                $query->where('type','=', $type);
+                return $query ;
+            }
+
+        })
          ->Orderby('runnumber','desc')
          ->paginate($this->paginate);
 
-        return view('document.rec.index',compact('dataset','search','tra_year','tra_month') );
+        return view('document.rec.index',compact('dataset','search','doc_project','doc_group','type','tra_year','tra_month') );
     }
 
     function add(Request $request){

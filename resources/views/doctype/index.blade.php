@@ -16,7 +16,7 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">เมนูสถานะเอกสาร</h1>
+        <h1 class="page-title">เมนูประเภทเอกสาร</h1>
 
     </div>
     <div class="page-content fade-in-up">
@@ -24,9 +24,9 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">ข้อมูลสถานะเอกสาร</div>
+                        <div class="ibox-title">ข้อมูลประเภทเอกสาร</div>
                         <div class="ibox-tools">
-                            <button type="button" onclick="location.href='{{ route('docstatus.add') }}';"
+                            <button type="button" onclick="location.href='{{ route('doctype.add') }}';"
                              class="btn btn-info" style=" cursor: pointer;">
                              <i class="fa fa-plus"></i> เพิ่มข้อมูล</button>
                         </div>
@@ -37,9 +37,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>CODE</th>
-                                    <th>ชื่อสถานะเอกสาร</th>
-                                    <th>สีสถานะ</th>
-                                    <th>Icon สถานะเอกสาร</th>
+                                    <th>ชื่อประเภทเอกสาร</th>
 
                                     <th>Action</th>
                                 </tr>
@@ -50,12 +48,10 @@
                                     <td> {{$dataset->firstItem() + $key }}</td>
                                     <td>{{ $row->uuid }}</td>
                                     <td>{{ $row->name }}</td>
-                                    <td>{{ $row->color }}</td>
-                                    <td>{{ $row->faicon }}</td>
 
                                     <td>
-                                        <a href="{{ route('docstatus.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i> แก้ไข</a>
-                                        <a href="{{ route('docstatus.delete') }}" data-uuid="{{ $row->uuid }}" class="btn btn-danger btn-delete btn-sm" > <i class="fa fa-trash"></i> ลบ</a>
+                                        <a href="{{ route('doctype.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i> แก้ไข</a>
+                                        <a href="{{ route('doctype.delete') }}" data-uuid="{{ $row->uuid }}" class="btn btn-danger btn-delete btn-sm" > <i class="fa fa-trash"></i> ลบ</a>
                                     </td>
                                 </tr>
                                  @endforeach
@@ -102,7 +98,7 @@ $(document).on("click", '.btn-delete', function(e) {
     if (result.isConfirmed) {
     $.ajax({
             type: 'POST',
-            url: "{{route('docstatus.delete')}}",
+            url: "{{route('doctype.delete')}}",
             data: {uuid: uuid,"_token": "{{ csrf_token() }}"},
             success: function (data){
                         Swal.fire({

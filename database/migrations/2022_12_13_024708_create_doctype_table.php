@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('docstatus', function (Blueprint $table) {
+        Schema::create('doctype', function (Blueprint $table) {
 
             $table->string('uuid',50)->primary();
-
-            $table->string('name',200)->nullable()->index();
+            $table->string('name',200)->nullable()->default('')->index();
             $table->string('stat',50)->nullable()->default('Y');
             $table->string('created_at',50)->nullable()->default('');
             $table->string('created_by',200)->nullable()->default('');
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('docstatus');
+        Schema::dropIfExists('doctype');
     }
 };

@@ -16,6 +16,7 @@ use App\Models\SettingDoc;
 use App\Models\Section;
 use App\Models\Docgroup;
 use App\Models\Project;
+use App\Models\Doctype;
 
 use App\Http\Controllers\SettingDocController;
 use App\Http\Controllers\UploadFileController as UploadFile;
@@ -30,7 +31,7 @@ class DocumentCenterController extends Controller
         $search =isset($request->search) ? $request->search :'';
         $doc_group =isset($request->doc_group) ? $request->doc_group :'';
         $doc_project =isset($request->doc_project) ? $request->doc_project :'';
-
+        $type=isset($request->type) ? $request->type :'';
         $dataset=Document::where('doc_type','=',$this->doc_type)
         ->where(function($query) use ($search) {
             if ($search !="") {
@@ -39,6 +40,7 @@ class DocumentCenterController extends Controller
                         ->orWhere('doc_group', 'like','%'.$search.'%')
                         ->orWhere('doc_project', 'like','%'.$search.'%')
                         ->orWhere('doc_from', 'like','%'.$search.'%')
+                        ->orWhere('type', 'like','%'.$search.'%')
                         ->orWhere('doc_to', 'like','%'.$search.'%')
                         ->orWhere('doc_no', 'like','%'.$search.'%')
                         ->orWhere('doc_subject', 'like','%'.$search.'%');
@@ -72,10 +74,18 @@ class DocumentCenterController extends Controller
             }
 
         })
+        ->where(function($query) use ($type) {
+            if ($type !="") {
+                $query->where('type','=', $type);
+                return $query ;
+            }
+
+        })
+
          ->Orderby('runnumber','desc')
         ->paginate($this->paginate);
 
-        return view('document.center.index',compact('dataset','doc_group','search','tra_year','tra_month') );
+        return view('document.center.index',compact('dataset','doc_project','doc_group','type','search','tra_year','tra_month') );
     }
 
     function add(Request $request){

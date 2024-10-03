@@ -50,7 +50,7 @@ class UploadFileController  extends Controller{
                 $doc_no  =  $Document->doc_no;
             }
 
-            $file_desc= trim(str_replace(".".$file_ext,"", $file->getClientOriginalName()));
+            $file_desc= $file->getClientOriginalName();
             $created_at=Carbon::now()->format("Y-m-d H:i:s");
             $created_by =isset(Auth::user()->name) ? Auth::user()->name : '';
             $updated_at =Carbon::now()->format("Y-m-d H:i:s");

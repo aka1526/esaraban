@@ -40,6 +40,7 @@
                     <li><a href="{{ route('sec-ex.index') }}">หน่วยงานภายนอก</a></li>
                     <li><a href="{{ route('sec-in.index') }}">หน่วยงานภายใน</a></li>
                     <li><a href="{{ route('project.index') }}">Project</a></li>
+                    <li><a href="{{ route('doctype.index') }}">ประเภทเอกสาร</a></li>
                     <li><a href="{{ route('docgroup.index') }}">กลุ่มเอกสาร</a></li>
                     <li><a href="{{ route('docstatus.index') }}">สถานะเอกสาร</a></li>
                     <li><a href="{{ route('setting.index') }}">ตั้งค่าเอกสาร</a></li>

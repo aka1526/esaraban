@@ -8,6 +8,10 @@ use Illuminate\Support\Carbon;
 $Secret=\App\Models\SecretName::where('stat','Y')->OrderBy('uuid')->get();
 $Urgent=\App\Models\UrgentName::where('stat','Y')->OrderBy('uuid')->get();
 $Uploads=\App\Models\Uploads::where('uuid','!=','')->OrderBy('created_at')->get();
+$docGroup=\App\Models\Docgroup::where('stat','Y')->OrderBy('uuid')->get();
+$Projects=\App\Models\Project::where('stat','=','Y')->OrderBy('name')->get();
+$types=\App\Models\Doctype::where('stat','=','Y')->OrderBy('name')->get();
+
 $arrSecret=  array();
 $arrUrgent=  array();
 
@@ -63,7 +67,39 @@ foreach ($Urgent as $key => $value) {
                                 <form id="frmsearch" name="frmsearch" action="{{ route('docrec.index') }}" method="post">
                                     @csrf
                                   <div class="row">
+                                    <div class="col-md-2 form-group">
+                                        <label >กลุ่มเอกสาร</label>
+                                        <select class="form-control select2_group"  id="doc_group" name="doc_group"  >
+                                            <option value="">Choose option</option>
+                                            @foreach ($docGroup as $key=>$item )
+                                            <option value="{{ $item->name }}" {{ $doc_group==$item->name? ' selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
 
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label >ประเภทเอกสาร</label>
+                                        <select class="form-control select2_group"  id="type" name="type"  >
+                                            <option value="">Choose option</option>
+                                            @foreach ($types as $key=>$item )
+                                            <option value="{{ $item->name }}" {{ $type==$item->name ? 'selected' : '' }}>{{ $item->name }}</option>
+                                            @endforeach
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <label >โครงการ</label>
+                                        <select class="form-control select2_group"  id="doc_project" name="doc_project"  >
+                                            <option value="">Choose option</option>
+                                            @foreach ($Projects as $key=>$item )
+                                            <option value="{{ $item->name }}" {{ $doc_project==$item->name? ' selected' : '' }}>{{ $item->name }}</option>
+                                            @endforeach
+
+                                        </select>
+
+                                    </div>
                                     <div class="col-md-4 form-group  ">
                                         <label >ค้นหา/search</label>
                                         <div class="input-group">
@@ -93,11 +129,9 @@ foreach ($Urgent as $key => $value) {
                                         <th>วันที่รับ</th>
                                         <th>ความเร่งด่วน</th>
                                         <th>สถานะเอกสาร</th>
-
-                                        <th>จากหน่วยงาน</th>
-
+                                        <th>จากบริษัท</th>
                                         <th>เลขที่หนังสือ</th>
-                                        <th>หนังสือลงวันที่</th>
+                                        <th>ลงวันที่</th>
                                         <th>ถึงหน่วยงาน</th>
                                         <th>เอกสารแนบ</th>
                                         <th>Action</th>
@@ -140,6 +174,12 @@ foreach ($Urgent as $key => $value) {
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $dataset->links('pagination.default', [
+                                'paginator' => $dataset,
+                                'search' => isset($search) ? $search : '',
+
+                                'link_limit' => $dataset->perPage(),
+                            ]) }}
                         </div>
                     </div>
                     </div>
@@ -159,6 +199,17 @@ foreach ($Urgent as $key => $value) {
 
 
  <script>
+$(document).ready(function() {
+    init_select2();
+})
+
+function init_select2() {
+    $(".select2_group").select2({
+        placeholder: 'Select...',
+        allowClear: true,
+        tags: true
+    });
+}
 
 $(document).on("click", '.btn-delete', function(e) {
     e.preventDefault();

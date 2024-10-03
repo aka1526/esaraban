@@ -15,7 +15,7 @@ class AddC0036ToTable extends Migration
     {
         Schema::table('secretname', function (Blueprint $table) {
 
-            $table->string('faicon',200)->nullable()->default('fa fa-check-square');
+            $table->string('faicon',200)->nullable()->default('fa-check-square');
 
 
         });
