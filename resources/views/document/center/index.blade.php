@@ -173,8 +173,8 @@ foreach ($Urgent as $key => $value) {
                                         </td>
                                         <td>
 
-                                            <a href="{{ route('doccenter.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i> แก้ไข</a>
-                                            <a href="{{ route('doccenter.delete') }}" data-uuid="{{ $row->uuid }}" class="btn btn-danger btn-delete btn-sm" > <i class="fa fa-trash"></i> ลบ</a>
+                                            <a href="{{ route('doccenter.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('doccenter.delete') }}" data-uuid="{{ $row->uuid }}" class="btn btn-danger btn-delete btn-sm" > <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

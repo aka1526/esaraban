@@ -128,9 +128,10 @@ foreach ($Urgent as $key => $value) {
                                         <th>ความเร่งด่วน</th>
                                         <th>สถานะเอกสาร</th>
                                         <th>จากหน่วยงาน</th>
+                                        <th>ถึงบริษัท</th>
                                         <th>เลขที่หนังสือ</th>
                                         <th>หนังสือลงวันที่</th>
-                                        <th>ถึงบริษัท</th>
+                                        <th>เรื่อง</th>
                                         <th>เอกสารแนบ</th>
                                         <th>Action</th>
 
@@ -146,7 +147,7 @@ foreach ($Urgent as $key => $value) {
                                         <td><button type="button" class="btn btn-sm btn-rounded btn-{{$colorSecret[$row->lavel_secret ]}}" style="width: 120px"><i class="fa {{$iconSecret[$row->lavel_secret ]}}"></i> {{$arrSecret[$row->lavel_secret ]}}</button></td>
 
                                         <td>{{ $row->doc_from  }}</td>
-
+                                        <td>{{ $row->doc_to  }}</td>
                                         <td>{{ $row->doc_no  }}</td>
                                         <td>{{ Carbon::parse( $row->doc_date)->thaidate();  }}</td>
                                         <td>{{ $row->doc_subject  }}</td>
@@ -164,8 +165,8 @@ foreach ($Urgent as $key => $value) {
                                         </td>
                                         <td>
 
-                                            <a href="{{ route('docsend.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i> แก้ไข</a>
-                                            <a href="{{ route('docsend.delete') }}" data-uuid="{{ $row->uuid }}" class="btn btn-danger btn-delete btn-sm" > <i class="fa fa-trash"></i> ลบ</a>
+                                            <a href="{{ route('docsend.edit',$row->uuid) }}" class="btn btn-btn btn-warning btn-sm" > <i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('docsend.delete') }}" data-uuid="{{ $row->uuid }}" class="btn btn-danger btn-delete btn-sm" > <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
