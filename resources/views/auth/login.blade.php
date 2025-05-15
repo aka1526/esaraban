@@ -1,6 +1,6 @@
 @extends("layouts.applogin")
 @section('title')
-{{ config('app.name') }}
+E-Saraban
 @endsection
 @section('body')
 <body class=" " style="background-color: #989595;">
@@ -10,7 +10,7 @@
             <form id="login-form" action="{{ route('user.login_check')}}" method="post" enctype="multipart/form-data">
                 @csrf
 
-                <h2 class="login-title text-center mb-4">ทีมตรวจประเมิน 5ส</h2>
+                <h2 class="login-title text-center mb-4">E-Saraban</h2>
 
                 <div class="form-group">
                     <div class="input-group-icon right">
