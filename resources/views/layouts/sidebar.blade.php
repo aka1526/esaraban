@@ -8,11 +8,11 @@
                 <div class="font-strong">James Brown</div><small>Administrator</small></div>
         </div>
         <ul class="side-menu metismenu">
-            <li>
+            {{-- <li>
                 <a href="index.html"><i class="sidebar-item-icon fa fa-area-chart"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="heading">เมนูเอกสาร</li>
             <li>
                 <a href="{{ route('docrec.index') }}"><i class="sidebar-item-icon fa fa-arrow-right"></i>
