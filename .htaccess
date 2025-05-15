@@ -1,0 +1,17 @@
+##RewriteEngine on
+##RewriteCond %{REQUEST_URI} !^public
+##RewriteRule ^(.*)$ public/$1 [L]
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+</IfModule>
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/public
+RewriteRule ^(.*)$ public/$1 [L]
+
+RewriteRule ^/mix-manifest\.json$ /public/mix-manifest\.json [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ /public/index.php [L]
